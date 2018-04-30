@@ -716,6 +716,9 @@ export default class extends Component {
       pages = <View style={pageStyle} key={0}>{children}</View>
     }
 
+    console.log('looop = ', loop);
+    console.log('showButtons = ', showsButtons);
+    console.log('my new Prop force ... = ', this.props.forceShowPrevButton);
     return (
       <View style={[styles.container, containerStyle]} onLayout={this.onLayout}>
         {this.renderScrollView(pages)}
