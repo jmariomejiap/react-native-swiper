@@ -126,7 +126,7 @@ export default class extends Component {
     automaticallyAdjustContentInsets: PropTypes.bool,
     showsPagination: PropTypes.bool,
     showsButtons: PropTypes.bool,
-    forceShowPrevButton: PropTypes.bool,
+    forceShowPrevButton: PropTypes.bool, // adding feature to always-show button. Used as SkipButton
     disableNextButton: PropTypes.bool,
     loadMinimal: PropTypes.bool,
     loadMinimalSize: PropTypes.number,
@@ -163,7 +163,7 @@ export default class extends Component {
     automaticallyAdjustContentInsets: false,
     showsPagination: true,
     showsButtons: false,
-    forceShowPrevButton: false,
+    forceShowPrevButton: false, // added feature. set to false, no interference with default functionality
     disableNextButton: false,
     loop: true,
     loadMinimal: false,
@@ -592,6 +592,7 @@ export default class extends Component {
   renderPrevButton = () => {
     let button = null
 
+    // this.props.forceShowPrevButton added to force button to remain visible. even when loop is set to false.
     if (this.props.loop || this.state.index !== 0 || this.props.forceShowPrevButton) {
       button = this.props.prevButton || <Text style={styles.buttonText}>‹</Text>
     }
@@ -716,9 +717,6 @@ export default class extends Component {
       pages = <View style={pageStyle} key={0}>{children}</View>
     }
 
-    console.log('looop = ', loop);
-    console.log('showButtons = ', showsButtons);
-    console.log('my new Prop force ... = ', this.props.forceShowPrevButton);
     return (
       <View style={[styles.container, containerStyle]} onLayout={this.onLayout}>
         {this.renderScrollView(pages)}
