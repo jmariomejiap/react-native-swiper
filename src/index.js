@@ -126,6 +126,7 @@ export default class extends Component {
     automaticallyAdjustContentInsets: PropTypes.bool,
     showsPagination: PropTypes.bool,
     showsButtons: PropTypes.bool,
+    forceShowPrevButton: PropTypes.bool,
     disableNextButton: PropTypes.bool,
     loadMinimal: PropTypes.bool,
     loadMinimalSize: PropTypes.number,
@@ -162,6 +163,7 @@ export default class extends Component {
     automaticallyAdjustContentInsets: false,
     showsPagination: true,
     showsButtons: false,
+    forceShowPrevButton: false,
     disableNextButton: false,
     loop: true,
     loadMinimal: false,
@@ -590,7 +592,7 @@ export default class extends Component {
   renderPrevButton = () => {
     let button = null
 
-    if (this.props.loop || this.state.index !== 0) {
+    if (this.props.loop || this.state.index !== 0 || this.props.forceShowPrevButton) {
       button = this.props.prevButton || <Text style={styles.buttonText}>‹</Text>
     }
 
